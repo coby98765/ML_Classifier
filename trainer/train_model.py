@@ -2,13 +2,15 @@ import pandas as pd
 import json
 
 class Trainer:
-    def __init__(self,input_file,output_name=""):
-        self.csv_file = input_file
-        self.json_file = f"./model_data/{output_name}_trained_data.json"
+    def __init__(self):
+        self.csv_file = ""
+        self.json_file = ""
         self.df = None
         self.data = None
 
-    def train(self):
+    def train(self,input_file,output_name=""):
+        self.csv_file = input_file
+        self.json_file = f"./model_data/{output_name}_trained_data.json"
         print("Getting data.")
         df = pd.read_csv(self.csv_file)
         print("Data info: ")
