@@ -8,13 +8,13 @@ class Trainer:
         self.df = None
         self.data = None
 
-    def train(self,input_file,output_name=""):
-        self.csv_file = input_file
+    def train(self,df,output_name=""):
+        # self.csv_file = input_file
         self.json_file = f"./model_data/{output_name}_trained_data.json"
-        print("Getting data.")
-        df = pd.read_csv(self.csv_file)
-        print("Data info: ")
-        print(df.info())
+        # print("Getting data.")
+        # df = self.get_df(self.csv_file)
+        # print("Data info: ")
+        # print(df.info())
         print("Cleaning Data...")
         self.df = self._clean_df(df)
         print("Starting training...")
@@ -22,6 +22,16 @@ class Trainer:
         print("Training Complete.")
         self.save()
         print(f"Exported Training Data to {self.json_file}.")
+
+    @staticmethod
+    def get_df(input_file):
+        try:
+            df = pd.read_csv(input_file)
+            print("CSV file loaded successfully!")
+            print(df.info())
+            return df
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
 
     def training(self,df,data=None):
         if data is None:
