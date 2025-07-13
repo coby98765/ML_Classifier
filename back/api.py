@@ -3,10 +3,9 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 # classes
-from back.trainer import Trainer
-from back.tester import Test
 from back.predictor import Predictor
-
+from back.flow import Flow
+from back.utils import Utils
 
 class TrainJSON(BaseModel):
     name: str
@@ -20,6 +19,15 @@ def get_root():
 
 @app.post("/train/")
 async def train_model(data: TrainJSON):
+    target_adr = f"./back/model_data/{data.name}_trained_data.json"
+    df = Utils.get_df(data.file)
+    df = Utils.clean_df(df)
+    accuracy = Flow.train_and_test(df,target_adr)
+    return {"item": data.name,"accuracy":accuracy}
 
-    return {"message": "Item created successfully", "item": data.name}
+@app.post("/predict/{model_name}")
+async def train_model(model_name:str,data: dict):
+    target_adr = f"./back/model_data/{model_name}_trained_data.json"
+
+    return {"item": data.name,"accuracy":accuracy}
 

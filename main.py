@@ -1,26 +1,19 @@
-from back.predictor import Predictor
-from back.trainer import Train
+# from back.predictor import Predictor
+# from back.trainer import Train
 
 project = "phishing"
 data_csv = f"./data/{project}.csv"
 
-def split_dataframe(df, train_ratio=0.7):
-    shuffled = df.sample(frac=1)
-    split_index = int(len(shuffled) * train_ratio)
-    train_df = shuffled.iloc[:split_index]
-    test_df = shuffled.iloc[split_index:]
-    return train_df, test_df
 
-
-training = Trainer()
-initial_df = training.get_df(data_csv)
-df_to_train,df_to_test = split_dataframe(initial_df)
-training.train(df_to_train,project)
-test = Test()
-accuracy_rate = test.run_test(df_to_test)
-
-predictor = Predictor(project)
-predictor.load_model()
+# training = Trainer()
+# initial_df = training.get_df(data_csv)
+# df_to_train,df_to_test = split_dataframe(initial_df)
+# training.train(df_to_train,project)
+# test = Test()
+# accuracy_rate = test.run_test(df_to_test)
+#
+# predictor = Predictor(project)
+# predictor.load_model()
 
 sample_input = {
     "UsingIP": 1,
@@ -54,5 +47,6 @@ sample_input = {
     "LinksPointingToPage": 0,
     "StatsReport": 1
 }
-print(predictor.predict(sample_input))
+
+#print(predictor.predict(sample_input))
 

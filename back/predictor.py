@@ -1,20 +1,19 @@
 import json
 
+from back.utils import Utils
 
 class Predictor:
     def __init__(self,data_file_name):
-        self.file_adr = f".back//model_data/{data_file_name}_trained_data.json"
-        self.data = None
+        self.file_adr = data_file_name
+        self.data = Utils.import_json(self.file_adr)
 
 
     def predict(self,entry):
         cal = self._create_cal_dict(entry)
         final_options = self._sum_key(cal)
-        normalized_keys = self._normalize_options(final_options)
-        normalized_vals = self._normalize_and_scale(normalized_keys)
-        print("Options: ",normalized_vals)
+        normalized_vals = self._normalize_and_scale(final_options)
         max_option = max(normalized_vals, key=normalized_vals.get)
-        return max_option
+        return max_option,normalized_vals
 
     def load_model(self):
         with open(self.file_adr, 'r') as f:

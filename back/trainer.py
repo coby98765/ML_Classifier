@@ -1,27 +1,16 @@
 import pandas as pd
 import json
 
-class Trainer:
-    def __init__(self):
-        self.csv_file = ""
-        self.json_file = ""
-        self.df = None
-        self.data = None
+from back.utils import Utils
 
-    def train(self,df,output_name=""):
-        # self.csv_file = input_file
-        self.json_file = f"./model_data/{output_name}_trained_data.json"
-        # print("Getting data.")
-        # df = self.get_df(self.csv_file)
-        # print("Data info: ")
-        # print(df.info())
-        print("Cleaning Data...")
-        self.df = self._clean_df(df)
+class Trainer:
+
+    def train(self,df,output_name):
         print("Starting training...")
-        self.data = self.training(self.df)
+        data = self.training(df)
         print("Training Complete.")
-        self.save()
-        print(f"Exported Training Data to {self.json_file}.")
+        Utils.export_json(output_name,data)
+        print(f"Exported Training Data to {output_name}.")
 
     def training(self,df,data=None):
         if data is None:
@@ -42,21 +31,6 @@ class Trainer:
                 data["data"][option][key] = self._count_to_probability(amount_dict,data["sum"][option])
         return data
 
-    def save(self):
-        #adjusting data keys to match JSON prot.
-        clean_model = self._convert_keys_to_str(self.data)
-        with open(self.json_file, 'w') as f:
-            json.dump(clean_model, f, indent=2)
-
-    #utils
-    #gpt solution for dict keys not compatible for JSON
-    def _convert_keys_to_str(self,obj):
-        if isinstance(obj, dict):
-            return {str(k): self._convert_keys_to_str(v) for k, v in obj.items()}
-        elif isinstance(obj, list):
-            return [self._convert_keys_to_str(i) for i in obj]
-        else:
-            return obj
 
     @staticmethod
     def _count_to_probability(data,count, smoothing=1):
