@@ -4,6 +4,7 @@ import json
 class Utils:
     @staticmethod
     def split_dataframe(df, train_ratio=0.7):
+        print("DF split for Training & Testing.")
         shuffled = df.sample(frac=1,random_state=5)
         split_index = int(len(shuffled) * train_ratio)
         train_df = shuffled.iloc[:split_index]
@@ -36,16 +37,22 @@ class Utils:
 
     @staticmethod
     def import_json(file_rute):
-        with open(file_rute, 'r') as f:
-            model = json.load(f)
-            return model
+        try:
+            with open(file_rute, 'r') as f:
+                model = json.load(f)
+                return model
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     @staticmethod
     def export_json(file_rute,data):
         #adjusting data keys to match JSON prot.
         clean_model = Utils._convert_keys_to_str(data)
-        with open(file_rute, 'w') as f:
-            json.dump(clean_model, f, indent=2)
+        try:
+            with open(file_rute, 'w') as f:
+                json.dump(clean_model, f, indent=2)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     @staticmethod
     def _convert_keys_to_str(obj):

@@ -28,6 +28,6 @@ async def train_model(data: TrainJSON):
 @app.post("/predict/{model_name}")
 async def train_model(model_name:str,data: dict):
     target_adr = f"./back/model_data/{model_name}_trained_data.json"
-
-    return {"item": data.name,"accuracy":accuracy}
+    response = Flow.predict(data,target_adr)
+    return {"result": response[0],"rate":response[0]}
 
