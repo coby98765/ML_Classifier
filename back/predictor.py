@@ -3,7 +3,7 @@ import json
 
 class Predictor:
     def __init__(self,data_file_name):
-        self.file_adr = f"./model_data/{data_file_name}_trained_data.json"
+        self.file_adr = f".back//model_data/{data_file_name}_trained_data.json"
         self.data = None
 
 

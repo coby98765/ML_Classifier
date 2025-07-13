@@ -1,5 +1,5 @@
-from predictor.predict import Predictor
-from trainer.train_model import Trainer
+from back.predictor import Predictor
+from back.trainer import Train
 
 project = "phishing"
 data_csv = f"./data/{project}.csv"

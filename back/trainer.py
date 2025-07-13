@@ -23,16 +23,6 @@ class Trainer:
         self.save()
         print(f"Exported Training Data to {self.json_file}.")
 
-    @staticmethod
-    def get_df(input_file):
-        try:
-            df = pd.read_csv(input_file)
-            print("CSV file loaded successfully!")
-            print(df.info())
-            return df
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
-
     def training(self,df,data=None):
         if data is None:
             data = dict()
@@ -67,22 +57,6 @@ class Trainer:
             return [self._convert_keys_to_str(i) for i in obj]
         else:
             return obj
-
-    #clean DF from unique col (like index,id)
-    # or if one value for all lines in col
-    @staticmethod
-    def _clean_df(df):
-        clean_df = df.copy()
-
-        for col in clean_df.columns:
-            unique_vals = clean_df[col].nunique()
-            total_vals = len(clean_df[col])
-
-            if unique_vals == total_vals or unique_vals == 1:
-                print(f"Dropping Column: {col}.")
-                clean_df.drop(columns=col, inplace=True)
-
-        return clean_df
 
     @staticmethod
     def _count_to_probability(data,count, smoothing=1):
