@@ -35,8 +35,8 @@ async def train_model(data: TrainJSON):
         print(e)
         return {"error": str(e)}
 
-@app.post("/predict/{model_name}")
-async def train_model(model_name:str,data: dict):
+@app.post("/classify/{model_name}")
+async def classify(model_name:str, data: dict):
     try:
         target_adr = f"./back/model_data/{model_name}.json"
         response = Flow.predict(data,target_adr)
