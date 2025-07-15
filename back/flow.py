@@ -30,6 +30,9 @@ class Flow:
 
     @staticmethod
     def model_arc(model_name):
-        model_data = Utils.import_json(f"./back/{model_name}.json")
-        arc = Utils.module_arc(model_data)
-        return arc
+        if model_name in Flow.model_list():
+            model_data = Utils.import_json(f"./back/model_data/{model_name}.json")
+            arc = Utils.module_arc(model_data)
+            return arc
+        else:
+            return "model_not_found"

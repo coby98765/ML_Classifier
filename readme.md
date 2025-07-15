@@ -10,3 +10,4 @@ run FastAPI server
 ```bash
 uvicorn back.api:app --reload
 ```
+uvicorn back.api:app --reload --port 8001

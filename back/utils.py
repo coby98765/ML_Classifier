@@ -39,6 +39,7 @@ class Utils:
 
     @staticmethod
     def import_json(file_rute):
+        print(f"Importing JSON file: {file_rute}...")
         try:
             with open(file_rute, 'r') as f:
                 model = json.load(f)
@@ -50,6 +51,7 @@ class Utils:
     def export_json(file_rute,data):
         #adjusting data keys to match JSON prot.
         clean_model = Utils._convert_keys_to_str(data)
+        print(f"Exporting JSON file: {file_rute}...")
         try:
             with open(file_rute, 'w') as f:
                 json.dump(clean_model, f, indent=2)
@@ -78,7 +80,9 @@ class Utils:
     @staticmethod
     def module_arc(model):
         model_arc = dict()
-        one_option = next(iter(model['data']), None)
-        for col in model['columns'].keys():
-            model_arc[col] = model['data'][one_option][col].keys()
+        one_option = next(iter(model['data']))
+        for col in model['columns'][:-1]:
+            keys = list(model['data'][one_option][col].keys())
+            model_arc[col] = keys
+        model_arc[model['columns'][-1]]= list(model['sum'].keys())
         return model_arc
