@@ -15,11 +15,6 @@ class Predictor:
         max_option = max(normalized_vals, key=normalized_vals.get)
         return max_option,normalized_vals
 
-    def load_model(self):
-        with open(self.file_adr, 'r') as f:
-            self.data = json.load(f)
-        # print(self.data)
-
     #utils
     #create a dict or the options based on model
     def _create_cal_dict(self,entry):

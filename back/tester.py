@@ -10,6 +10,7 @@ class Test:
         self.score = 0
 
     def run_test(self,df):
+        print("Running test...")
         # split df
         test_df = df.iloc[:, :-1]
         result_df = df.iloc[:, -1:]
@@ -27,6 +28,8 @@ class Test:
             self.score = (score / rows) * 100
         #add score in model data
         self.add_score_to_json()
+        print("Test complete.\n"
+              f"Accuracy: {self.score}")
         return self.score
 
     def add_score_to_json(self):

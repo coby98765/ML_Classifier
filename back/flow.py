@@ -21,3 +21,18 @@ class Flow:
         predictor = Predictor(target_adr)
         res =  predictor.predict(data)
         return res
+
+    @staticmethod
+    def model_list():
+        folder = "./back/model_data"
+        m_list = Utils.file_list(folder,'json')
+        return m_list
+
+    @staticmethod
+    def model_arc(model_name):
+        if model_name in Flow.model_list():
+            model_data = Utils.import_json(f"./back/model_data/{model_name}.json")
+            arc = Utils.module_arc(model_data)
+            return arc
+        else:
+            return "model_not_found"

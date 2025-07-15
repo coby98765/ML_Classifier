@@ -14,11 +14,5 @@ item = input("Enter item id: ")
 try:
     response = requests.get(f'{url}items/{item}')
     response.raise_for_status() # Raise HTTPError for bad status codes
-except ConnectionError as e:
-    print(f"Connection Error: {e}")
-except HTTPError as e:
-    print(f"HTTP Error: {e}")
-except RequestException as e:
-    print(f"Other Requests Error: {e}")
 except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+    print(f"An error occurred: {e}")

@@ -1,5 +1,7 @@
 import pandas as pd
 import json
+import os
+
 
 class Utils:
     @staticmethod
@@ -37,6 +39,7 @@ class Utils:
 
     @staticmethod
     def import_json(file_rute):
+        print(f"Importing JSON file: {file_rute}...")
         try:
             with open(file_rute, 'r') as f:
                 model = json.load(f)
@@ -48,6 +51,7 @@ class Utils:
     def export_json(file_rute,data):
         #adjusting data keys to match JSON prot.
         clean_model = Utils._convert_keys_to_str(data)
+        print(f"Exporting JSON file: {file_rute}...")
         try:
             with open(file_rute, 'w') as f:
                 json.dump(clean_model, f, indent=2)
@@ -62,3 +66,23 @@ class Utils:
             return [Utils._convert_keys_to_str(i) for i in obj]
         else:
             return obj
+
+    @staticmethod
+    def file_list(folder_path, file_extension):
+        matching_files = []
+        for file in os.listdir(folder_path):
+            if file.lower().endswith(f".{file_extension.lower()}"):
+                file_name = file.lower().split(".")[0]
+                matching_files.append(file_name)
+
+        return matching_files
+
+    @staticmethod
+    def module_arc(model):
+        model_arc = dict()
+        one_option = next(iter(model['data']))
+        for col in model['columns'][:-1]:
+            keys = list(model['data'][one_option][col].keys())
+            model_arc[col] = keys
+        model_arc[model['columns'][-1]]= list(model['sum'].keys())
+        return model_arc
