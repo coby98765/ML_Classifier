@@ -45,7 +45,10 @@ def get_models():
 
 @app.get("/models/{model_name}")
 def get_model_arc(model_name:str):
-    pass
+    res = dict()
+    res["model"] = model_name
+    res["arc"] = Flow.model_arc(model_name)
+    return res
 
 
 if __name__ == "__main__":

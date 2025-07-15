@@ -74,3 +74,11 @@ class Utils:
                 matching_files.append(file_name)
 
         return matching_files
+
+    @staticmethod
+    def module_arc(model):
+        model_arc = dict()
+        one_option = next(iter(model['data']), None)
+        for col in model['columns'].keys():
+            model_arc[col] = model['data'][one_option][col].keys()
+        return model_arc

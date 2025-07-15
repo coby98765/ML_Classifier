@@ -27,3 +27,9 @@ class Flow:
         folder = "./back/model_data"
         m_list = Utils.file_list(folder,'json')
         return m_list
+
+    @staticmethod
+    def model_arc(model_name):
+        model_data = Utils.import_json(f"./back/{model_name}.json")
+        arc = Utils.module_arc(model_data)
+        return arc
