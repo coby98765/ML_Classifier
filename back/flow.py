@@ -21,3 +21,7 @@ class Flow:
         predictor = Predictor(target_adr)
         res =  predictor.predict(data)
         return res
+
+    @staticmethod
+    def model_list():
+        pass
