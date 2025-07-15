@@ -24,4 +24,6 @@ class Flow:
 
     @staticmethod
     def model_list():
-        pass
+        folder = "./back/model_data"
+        m_list = Utils.file_list(folder,'json')
+        return m_list

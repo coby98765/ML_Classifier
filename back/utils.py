@@ -1,5 +1,7 @@
 import pandas as pd
 import json
+import os
+
 
 class Utils:
     @staticmethod
@@ -62,3 +64,13 @@ class Utils:
             return [Utils._convert_keys_to_str(i) for i in obj]
         else:
             return obj
+
+    @staticmethod
+    def file_list(folder_path, file_extension):
+        matching_files = []
+        for file in os.listdir(folder_path):
+            if file.lower().endswith(f".{file_extension.lower()}"):
+                file_name = file.lower().split(".")[0]
+                matching_files.append(file_name)
+
+        return matching_files

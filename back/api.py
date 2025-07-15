@@ -39,8 +39,13 @@ async def train_model(model_name:str,data: dict):
 
 @app.get("/models")
 def get_models():
-    models_list = []
-    return {'Hello':'World'}
+    res = dict()
+    res["models"] = Flow.model_list()
+    return res
+
+@app.get("/models/{model_name}")
+def get_model_arc(model_name:str):
+    pass
 
 
 if __name__ == "__main__":
