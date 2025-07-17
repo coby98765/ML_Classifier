@@ -1,6 +1,4 @@
-import json
-
-from back.utils import Utils
+from back.utils.utils import Utils
 
 class Predictor:
     def __init__(self,data_file_name):

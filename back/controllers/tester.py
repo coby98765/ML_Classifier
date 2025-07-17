@@ -1,6 +1,5 @@
-import json
-from back.predictor import Predictor
-from back.utils import Utils
+from back.models.predictor import Predictor
+from back.utils.utils import Utils
 
 
 class Test:

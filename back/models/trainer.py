@@ -1,7 +1,4 @@
-import pandas as pd
-import json
-
-from back.utils import Utils
+from back.utils.utils import Utils
 
 class Trainer:
 

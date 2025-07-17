@@ -1,7 +1,7 @@
-from back.utils import Utils
-from back.tester import Test
-from back.trainer import Trainer
-from back.predictor import Predictor
+from back.utils.utils import Utils
+from back.controllers.tester import Test
+from back.models.trainer import Trainer
+from back.models.predictor import Predictor
 
 training = Trainer()
 
