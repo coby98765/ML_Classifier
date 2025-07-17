@@ -1,4 +1,4 @@
-# from back.predictor import Predictor
+# from back.predictor import Classifier
 # from back.trainer import Train
 
 project = "phishing"
@@ -12,7 +12,7 @@ data_csv = f"./data/{project}.csv"
 # test = Test()
 # accuracy_rate = test.run_test(df_to_test)
 #
-# predictor = Predictor(project)
+# predictor = Classifier(project)
 # predictor.load_model()
 
 sample_input = {

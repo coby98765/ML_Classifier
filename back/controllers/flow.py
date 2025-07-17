@@ -1,7 +1,7 @@
 from back.utils.utils import Utils
 from back.controllers.tester import Test
 from back.models.trainer import Trainer
-from back.models.predictor import Predictor
+from back.models.classifier import Classifier
 
 training = Trainer()
 
@@ -18,7 +18,7 @@ class Flow:
     @staticmethod
     def predict(data, name):
         target_adr = f"./back/model_data/{name}_trained_data.json"
-        predictor = Predictor(target_adr)
+        predictor = Classifier(target_adr)
         res =  predictor.predict(data)
         return res
 
