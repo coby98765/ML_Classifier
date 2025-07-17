@@ -1,12 +1,11 @@
-import json
-from back.predictor import Predictor
-from back.utils import Utils
+from back.models.classifier import Classifier
+from back.utils.utils import Utils
 
 
 class Test:
     def __init__(self,model_rute):
         self.name = model_rute
-        self.predictor = Predictor(model_rute)
+        self.predictor = Classifier(model_rute)
         self.score = 0
 
     def run_test(self,df):

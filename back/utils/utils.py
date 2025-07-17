@@ -84,5 +84,5 @@ class Utils:
         for col in model['columns'][:-1]:
             keys = list(model['data'][one_option][col].keys())
             model_arc[col] = keys
-        model_arc[model['columns'][-1]]= list(model['sum'].keys())
+        # model_arc[model['columns'][-1]]= list(model['sum'].keys())
         return model_arc
